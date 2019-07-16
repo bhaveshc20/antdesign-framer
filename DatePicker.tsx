@@ -1,37 +1,28 @@
 import { DatePicker as AntDatePicker } from "antd"
 import * as React from "react"
-import { PropertyControls, ControlType } from "framer"
+import { Frame, FrameProps, PropertyControls, ControlType } from "framer"
 import "./App.css"
+import { centerInContainer } from "./Utils"
 
-interface Props {
+interface Props extends FrameProps {
     type: string
     allowClear: boolean
     autoFocus: boolean
     className: string
     disabled: boolean
-    dropdownClassName: string
-    mode: string
+    mode: 'time' | 'date' | 'month' | 'year' | 'decade'
     open: boolean
     placeholder: string
-    size: string
     suffixIcon: React.ReactNode
 }
 
 export class DatePicker extends React.Component<Props> {
     static defaultProps = {
-        width: 120,
-        height: 20,
         type: "DatePicker",
         allowClear: true,
         autoFocus: false,
-        className: '',
         disabled: false,
         mode: 'date',
-        open: false,
-        placeholder: '',
-        size: '',
-        suffixIcon: '',
-        
     }
 
     static propertyControls: PropertyControls = {
@@ -40,6 +31,29 @@ export class DatePicker extends React.Component<Props> {
             title: "Type",
             options: ["DatePicker", "MonthPicker", "RangePicker", "WeekPicker"],
         },
+        allowClear: {
+            type: ControlType.Boolean,
+            title: "Allow Clear",
+        },
+        autoFocus: {
+            type: ControlType.Boolean,
+            title: "Auto Focus",
+        },
+        disabled: {
+            type: ControlType.Boolean,
+            title: "Disabled",
+        },
+        mode: {
+            type: ControlType.Enum,
+            title: "Mode",
+            options: ['time', 'date', 'month', 'year', 'decade'],
+        },
+        open: {
+            type: ControlType.Boolean,
+            title: "Open",
+        },
+
+
     }
 
     render() {
@@ -48,9 +62,9 @@ export class DatePicker extends React.Component<Props> {
         const MonthPicker = (<AntDatePicker.MonthPicker />)
         const RangePicker = (<AntDatePicker.RangePicker />)
         const WeekPicker = (<AntDatePicker.WeekPicker />)
-        if(type=="DatePicker") return DatePicker
-        if(type=="MonthPicker") return MonthPicker
-        if(type=="RangePicker") return RangePicker
-        if(type=="WeekPicker") return WeekPicker
+        if (type == "DatePicker") return DatePicker
+        if (type == "MonthPicker") return MonthPicker
+        if (type == "RangePicker") return RangePicker
+        if (type == "WeekPicker") return WeekPicker
     }
 }

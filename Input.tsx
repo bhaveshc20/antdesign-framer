@@ -1,13 +1,14 @@
 import { Input as AntInput } from "antd"
 import * as React from "react"
-import { PropertyControls, ControlType, Size } from "framer"
+import { Frame, FrameProps, PropertyControls, ControlType } from "framer"
+import { centerInContainer } from "./Utils"
 
-interface Props {
+interface Props extends FrameProps {
     addonAfter: string | React.ReactNode;
     addonBefore: string | React.ReactNode
     defaultValue: string
     id: string
-    size: string
+    size: 'large' | 'default' | 'small'
     disabled: boolean
     placeholder: string
     prefix: string | React.ReactNode
@@ -17,6 +18,8 @@ interface Props {
     textarea: boolean
     rows: number
     autosize: boolean
+    allowClear: boolean
+    enterButton: boolean
     onPressEnter: React.KeyboardEventHandler
 }
 
@@ -24,20 +27,13 @@ export class Input extends React.Component<Props> {
     static defaultProps = {
         width: 200,
         height: 32,
-        id: "",
         size: "default",
-        prefix: "",
-        suffix: "",
         type: "text",
-        addonBefore: "",
-        addonAfter: "",
-        defaultValue: "",
-        value: "",
-        placeholder: "",
         textarea: false,
         rows: 4,
         disabled: false,
         autosize: false,
+        enterButton: false,
         onPressEnter: () => { }
     }
 
@@ -101,7 +97,7 @@ export class Input extends React.Component<Props> {
     }
 
     render() {
-        const { 
+        const {
             textarea,
             id,
             size,
@@ -116,34 +112,52 @@ export class Input extends React.Component<Props> {
             disabled,
             autosize,
             rows,
-            onPressEnter 
-        } = {...this.props};
+            ...rest
+        } = this.props
+
+        const TextAreaProps = {
+            id,
+            value,
+            placeholder,
+            disabled,
+            autosize,
+            rows
+        }
+
+        const InputProps = {
+            id,
+            size,
+            addonAfter,
+            addonBefore,
+            defaultValue,
+            value,
+            placeholder,
+            prefix,
+            suffix,
+            type,
+            disabled
+        }
         const area = (
-            <AntInput.TextArea
-                id={id}
-                value={value}
-                placeholder={placeholder}
-                disabled={disabled}
-                autosize={autosize}
-                rows={rows}
-                onPressEnter={onPressEnter}
-            />
+            <Frame {...rest} {...centerInContainer(this.props)}>
+                <AntInput.TextArea
+                    style={{
+                        height: `100%`,
+                        width: `100%`,
+                    }}
+                    {...TextAreaProps}
+                />
+            </Frame>
         );
         const field = (
-            <AntInput
-                id={id}
-                size={size}
-                addonAfter={addonAfter}
-                addonBefore={addonBefore}
-                defaultValue={defaultValue}
-                value={value}
-                placeholder={placeholder}
-                prefix={prefix}
-                suffix={suffix}
-                type={type}
-                disabled={disabled}
-                onPressEnter={onPressEnter}
-            />
+            <Frame {...rest} {...centerInContainer(this.props)}>
+                <AntInput
+                    style={{
+                        height: `100%`,
+                        width: `100%`,
+                    }}
+                    {...InputProps}
+                />
+            </Frame>
         );
 
         return textarea ? area : field

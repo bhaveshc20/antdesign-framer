@@ -1,9 +1,10 @@
 import { Progress as AntProgress } from "antd"
 import * as React from "react"
-import { PropertyControls, ControlType } from "framer"
+import { Frame, FrameProps, PropertyControls, ControlType } from "framer"
 import "./App.css"
+import { centerInContainer } from "./Utils"
 
-interface Props {
+interface Props extends FrameProps {
     type: string
     percent: number
     showInfo: boolean
@@ -18,7 +19,7 @@ interface Props {
 
 export class Progress extends React.Component<Props> {
     static defaultProps = {
-        height: 22,
+        height:20,
         type: "line",
         percent: 0,
         showInfo: true,
@@ -47,7 +48,7 @@ export class Progress extends React.Component<Props> {
             options: ["round", "square"],
             title: "Stroke-line cap"
         },
-        strokeColor: {type: ControlType.Color, title: "Stroke color"},
+        strokeColor: { type: ControlType.Color, title: "Stroke color" },
         successPercent: { type: ControlType.Number, title: "Success Percent" },
         strokeWidth: { type: ControlType.Number, title: "Stroke width" },
         gapDegree: { type: ControlType.Number, title: "Gap degree" },
@@ -59,20 +60,29 @@ export class Progress extends React.Component<Props> {
     }
 
     render() {
-        const { type, percent, showInfo, status, strokeColor, strokeLinecap, strokeWidth, successPercent,gapPosition, gapDegree } = this.props
+        const { type, percent, showInfo, status, strokeColor, strokeLinecap, strokeWidth, successPercent, gapPosition, gapDegree, ...rest } = this.props
+        const componentProps = {
+            type, percent, showInfo, status, strokeColor, strokeLinecap, strokeWidth, successPercent, gapPosition, gapDegree
+        }
+
         return (
-            <AntProgress
-                type={type}
-                percent={percent}
-                showInfo={showInfo}
-                status={status}
-                strokeColor={strokeColor}
-                strokeLinecap={strokeLinecap}
-                strokeWidth={strokeWidth}
-                successPercent={successPercent}
-                gapDegree={gapDegree}
-                gapPosition={gapPosition}
-             />
+            <Frame {...rest} {...centerInContainer(this.props)} background="none" center>
+                <AntProgress
+                    style={{
+                        width: `100%`,
+                    }}
+                    type={type}
+                    percent={percent}
+                    showInfo={showInfo}
+                    status={status}
+                    strokeColor={strokeColor}
+                    strokeLinecap={strokeLinecap}
+                    strokeWidth={strokeWidth}
+                    successPercent={successPercent}
+                    gapDegree={gapDegree}
+                    gapPosition={gapPosition}
+                />
+            </Frame>
         )
     }
 }

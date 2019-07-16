@@ -1,20 +1,23 @@
 import { Tag as AntTag } from "antd"
 import * as React from "react"
-import { PropertyControls, ControlType } from "framer"
+import { Frame, FrameProps, PropertyControls, ControlType } from "framer"
 import "./App.css"
+import { centerInContainer } from "./Utils"
 
 interface Props {
     text: string
     closable: boolean
     color: string
     visible: boolean
+    onClose?: Function;
+    afterClose?: Function;
 }
 
 export class Tag extends React.Component<Props> {
     static defaultProps = {
-        width: 50,
-        height: 25,
-        text: "Label",
+        height: 24,
+        width: 36,
+        text: "Tag",
         closable: false,
         visible: true
     }
@@ -27,15 +30,19 @@ export class Tag extends React.Component<Props> {
     }
 
     render() {
-        const { text, closable, color, visible } = this.props
+        const { text, closable, color, visible, ...rest } = this.props
+        const ComponentProps = {
+            text, closable, color, visible
+        }
         return (
-            <AntTag
-                closable={closable}
-                color={color}
-                visible={visible}
-            >
-                {text}
-            </AntTag>
+            <Frame {...rest} {...centerInContainer(this.props)} background="none">
+                <AntTag
+                    {...ComponentProps}
+                >
+                    {text}
+                </AntTag>
+            </Frame>
+
         )
     }
 }
