@@ -1,0 +1,21 @@
+{
+	"main": "dist/index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^16.8"
+	},
+	"peerDependencies": {
+		"framer": "^1.0",
+		"react": "^16.8"
+	},
+	"framer": {
+		"id": "a1f85459-019e-40e2-bfc7-91cadf5186d3",
+		"displayName": "Ant Design System"
+	},
+	"author": "Bhavesh Chowdhury",
+	"dependencies": {
+		"antd": "^3.20.0"
+	},
+	"name": "@framer/bhaveshchow.ant-design-system",
+	"version": "1.0.0"
+}
