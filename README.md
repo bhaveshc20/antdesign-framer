@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://github.com/bhaveshc20/antdesign-framer">
-<img alt="antd" src="https://github.com/bhaveshc20/antdesign-framer/blob/master/antd.png" width="300" height="300">
+<img alt="antd" src="https://github.com/bhaveshc20/antdesign-framer/blob/master/antd.png" width="150" height="150">
 </a>
 </p>
 
