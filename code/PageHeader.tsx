@@ -4,21 +4,6 @@ import { PageHeader as AntPageHeader, Icon } from "antd"
 
 // Thanks to Pedro Hernandez and co.
 
-// const routes = [
-//     {
-//         path: "index",
-//         breadcrumbName: "All companies",
-//     },
-//     {
-//         path: "first",
-//         breadcrumbName: "Reforce International",
-//     },
-//     {
-//         path: "second",
-//         breadcrumbName: "Teams",
-//     },
-// ]
-
 export function PageHeader(props) {
     const routes = props.breadcrumbs.map(l => ({ path: l, breadcrumbName: l }))
     return <AntPageHeader title={props.title} breadcrumb={{ routes }} />
