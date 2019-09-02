@@ -123,7 +123,7 @@ export class Menu extends React.Component<Props> {
             options,
         }
         return (
-            <Frame {...rest} {...centerInContainer(this.props)}/>
+            <Frame {...rest} {...centerInContainer(this.props)}>
                 <AntMenu
                     style={{
                         height: `100%`,

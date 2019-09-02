@@ -11,14 +11,14 @@ interface Props extends FrameProps {
     size: string
     disabled: boolean
     ghost: boolean
-    shape: " " | "circle-outline" | "circle" | "round"
+    shape: "default" | "circle-outline" | "circle" | "round"
     href: string
     loading: boolean
     onClick: React.MouseEventHandler
     backgroundColor: string
 }
 
-export class Button_ extends React.Component<Props> {
+export class Button extends React.Component<Props> {
     static defaultProps = {
         width: 68,
         height: 32,
@@ -67,7 +67,7 @@ export class Button_ extends React.Component<Props> {
         shape: {
             type: ControlType.Enum,
             title: "Shape",
-            options: [" ", "circle", "round"],
+            options: ["default", "circle", "round"],
             optionTitles: ["Default", "Circle", "Round"],
         },
         backgroundColor: { type: ControlType.Color, title: "Background Color" },
@@ -101,7 +101,7 @@ export class Button_ extends React.Component<Props> {
         }
 
         return (
-            <Frame {...rest}  {...centerInContainer(this.props)}/>
+            <Frame {...rest}  {...centerInContainer(this.props)}>
                 <AntButton
                     style={{
                         height: `100%`,

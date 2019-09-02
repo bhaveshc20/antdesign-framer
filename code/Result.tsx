@@ -100,7 +100,7 @@ export class Result extends React.Component<Props> {
         } = this.props
 
         return (
-            <Frame {...rest}  {...centerInContainer(this.props)} />
+            <Frame {...rest}  {...centerInContainer(this.props)} >
                 <AntResult
                     // style={{ overflow: "hidden" }}
                     status={status}

@@ -133,7 +133,7 @@ export class Card extends React.Component<Props> {
             singles,
         }
         return (
-            <Frame {...rest} {...centerInContainer(this.props)}/>
+            <Frame {...rest} {...centerInContainer(this.props)}>
                 <AntCard
                     style={{
                         height: `100%`,

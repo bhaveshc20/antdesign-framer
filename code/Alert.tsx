@@ -64,7 +64,7 @@ export class Alert extends React.Component<Props> {
         }
 
         return (
-            <Frame {...rest} {...centerInContainer(this.props)} />
+            <Frame {...rest} {...centerInContainer(this.props)} >
                 <AntAlert
                     style={{ height: `100%`, width: `100%` }}
                     {...componentProps}

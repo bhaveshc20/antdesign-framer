@@ -1,10 +1,10 @@
 import * as React from "react"
 import { PropertyControls, ControlType } from "framer"
-import { Collapse, Icon } from "antd"
+import { Collapse as AntCollapse, Icon } from "antd"
 // import styled from "styled-components"
 import "./Collapse.css"
 
-const Panel = Collapse.Panel
+const Panel = AntCollapse.Panel
 
 interface Props {
     header1: string
@@ -97,7 +97,7 @@ export class Collapse extends React.Component<Props> {
         } = this.props
 
         return (
-            <Collapse bordered={bordered} defaultActiveKey={["1", "2"]}>
+            <AntCollapse bordered={bordered} defaultActiveKey={["1", "2"]}>
                 <Panel header={header1} key="1" style={customPanelStyle}>
                     <div
                         style={{
@@ -118,7 +118,7 @@ export class Collapse extends React.Component<Props> {
                         {content2}
                     </div>
                 </Panel>
-            </Collapse>
+            </AntCollapse>
         )
     }
 }
