@@ -13,10 +13,10 @@ interface Props {
 
 export class Spin extends React.Component<Props> {
     static defaultProps = {
-        height:25,
+        height: 25,
         width: 25,
         size: "default",
-        spinning: true
+        spinning: true,
     }
 
     static propertyControls: PropertyControls = {
@@ -24,24 +24,18 @@ export class Spin extends React.Component<Props> {
         size: {
             type: ControlType.Enum,
             options: ["default", "small", "large"],
-            title: "Size"
+            optionTitles: ["Default", "Small", "Large"],
+            title: "Size",
         },
         spinning: { type: ControlType.Boolean, title: "Spinning" },
         tip: { type: ControlType.String, title: "Tip" },
     }
 
     render() {
-        const {
-            delay, size, spinning, tip
-        } = this.props
+        const { delay, size, spinning, tip } = this.props
 
         return (
-            <AntSpin
-                delay={delay}
-                size={size}
-                spinning={spinning}
-                tip={tip}
-            />
+            <AntSpin delay={delay} size={size} spinning={spinning} tip={tip} />
         )
     }
 }

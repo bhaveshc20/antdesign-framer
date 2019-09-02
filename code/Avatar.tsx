@@ -12,6 +12,8 @@ interface Props extends FrameProps {
     onError: () => boolean
     size: number
     badgecount: number
+    icon: string
+    text: string
 }
 
 export class Avatar extends React.Component<Props> {
@@ -31,6 +33,7 @@ export class Avatar extends React.Component<Props> {
             type: ControlType.Enum,
             title: "Shape",
             options: ["circle", "square"],
+            optionTitles: ["Circle", "Square"],
         },
         size: { type: ControlType.Number, title: "Size" },
         src: { type: ControlType.Image, title: "Source" },
@@ -46,7 +49,7 @@ export class Avatar extends React.Component<Props> {
             type: ControlType.String,
             title: "Icon",
             defaultValue: "user",
-            placeholder: "Enter ‘user’",
+            placeholder: "Enter 'user'",
         },
         badgecount: { type: ControlType.Number, title: "Badge Count" },
         showHide: {
@@ -58,7 +61,7 @@ export class Avatar extends React.Component<Props> {
         text: {
             type: ControlType.String,
             title: "Text",
-			defaultValue: "",
+            defaultValue: "",
             placeholder: "Icon must be empty",
             hidden(props) {
                 return props.showHide === false
@@ -72,6 +75,7 @@ export class Avatar extends React.Component<Props> {
             size,
             src,
             backgroundColor,
+            icon,
             color,
             badgecount,
             text,
@@ -83,6 +87,7 @@ export class Avatar extends React.Component<Props> {
             size,
             src,
             backgroundColor,
+            icon,
             color,
             badgecount,
             text,
@@ -97,8 +102,8 @@ export class Avatar extends React.Component<Props> {
                 <AntBadge count={badgecount}>
                     <AntAvatar
                         style={{
-                            height: `100%`,
-                            width: `100%`,
+                            height: this.props.height,
+                            width: this.props.width,
                             size: `default`,
                             icon: `user`,
                             background: `${backgroundColor}`,
@@ -113,5 +118,3 @@ export class Avatar extends React.Component<Props> {
         )
     }
 }
-
-// Could height: this.props.height & width: this.props.width be used instead of centerInContainer?

@@ -5,9 +5,11 @@ import "./App.css"
 
 interface Props {
     text: string
-    checked: any
+    autoFocus: string
+    checked: boolean
     defaultChecked: boolean
     disabled: boolean
+    indeterminate: boolean
     onChange: () => void
 }
 
@@ -16,41 +18,68 @@ export class Checkbox extends React.Component<Props> {
         width: 120,
         height: 20,
         text: "Checkbox",
-        checked: "manual",
+        checked: false,
         defaultChecked: false,
         disabled: false,
+        indeterminate: false,
     }
 
     static propertyControls: PropertyControls = {
         text: { type: ControlType.String, title: "Text" },
         checked: {
-            type: ControlType.SegmentedEnum,
-            options: ["manual", "true", "false"],
-            title: "Checked"
+            type: ControlType.Boolean,
+            title: "Checked",
+            defaultValue: false,
+            enabledTitle: "True",
+            disabledTitle: "False",
         },
-        defaultChecked: { type: ControlType.Boolean, title: "Default checked" },
+        defaultChecked: {
+            type: ControlType.Boolean,
+            title: "Default checked",
+            defaultValue: false,
+            enabledTitle: "True",
+            disabledTitle: "False",
+        },
         disabled: { type: ControlType.Boolean, title: "Disabled" },
+        indeterminate: {
+            type: ControlType.Boolean,
+            title: "Indeterminate",
+            defaultValue: false,
+            enabledTitle: "True",
+            disabledTitle: "False",
+        },
     }
 
     render() {
-        const { text,checked, defaultChecked, disabled, onChange} = this.props
-        const ifChecked = (
+        const {
+            text,
+            checked,
+            defaultChecked,
+            disabled,
+            indeterminate,
+            onChange,
+        } = this.props
+        /*  const ifChecked = (
             <AntCheckbox
-                checked={checked == "true"}
+                checked={checked}
                 defaultChecked={defaultChecked}
                 disabled={disabled}
+                
                 onChange={onChange}
             >
                 {text}
             </AntCheckbox>
-        );
+        )
+       
 
-        if (checked !== "manual") return ifChecked;
-
+        if (checked !== "manual") return ifChecked
+        */
         return (
             <AntCheckbox
+                checked={checked}
                 defaultChecked={defaultChecked}
                 disabled={disabled}
+                indeterminate={indeterminate}
                 onChange={onChange}
             >
                 {text}
