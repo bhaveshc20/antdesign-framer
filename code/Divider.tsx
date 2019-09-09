@@ -14,36 +14,32 @@ export class Divider extends React.Component<Props> {
     static defaultProps = {
         height: 25,
         dashed: false,
-        orientation: 'center',
-        type: 'horizontal',
+        orientation: "center",
+        type: "horizontal",
     }
 
     static propertyControls: PropertyControls = {
-        dashed: {type: ControlType.Boolean, title: "Dashed"},
+        dashed: { type: ControlType.Boolean, title: "Dashed" },
         orientation: {
             type: ControlType.Enum,
             options: ["left", "right", "center"],
-            title: "Orientation"
+            optionTitles: ["Left", "Right", "Center"],
+            title: "Orientation",
         },
         type: {
             type: ControlType.Enum,
             options: ["horizontal", "vertical"],
-            title: "Type"
+            optionTitles: ["Horizontal", "Vertical"],
+            title: "Type",
         },
         text: { type: ControlType.String, title: "Text" },
     }
 
     render() {
-        const {
-            dashed, orientation, type, text
-        } = this.props
+        const { dashed, orientation, type, text } = this.props
 
         return (
-            <AntDivider
-                dashed={dashed}
-                orientation={orientation}
-                type={type}
-            >
+            <AntDivider dashed={dashed} orientation={orientation} type={type}>
                 {text}
             </AntDivider>
         )

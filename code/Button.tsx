@@ -8,9 +8,10 @@ interface Props extends FrameProps {
     text: string
     type: "default" | "primary" | "ghost" | "dashed" | "danger" | "link"
     icon: string
+    size: string
     disabled: boolean
     ghost: boolean
-    shape: "circle-outline" | "circle" | "round"
+    shape: "default" | "circle-outline" | "circle" | "round"
     href: string
     loading: boolean
     onClick: React.MouseEventHandler
@@ -23,6 +24,7 @@ export class Button extends React.Component<Props> {
         height: 32,
         text: "Label",
         type: "default",
+        size: "default",
         icon: "",
         disabled: false,
         ghost: false,
@@ -42,6 +44,20 @@ export class Button extends React.Component<Props> {
                 "danger",
                 "link",
             ],
+            optionTitles: [
+                "Default",
+                "Primary",
+                "Ghost",
+                "Dashed",
+                "Danger",
+                "Link",
+            ],
+        },
+        size: {
+            type: ControlType.Enum,
+            title: "Size",
+            options: ["default", "small", "large"],
+            optionTitles: ["Default", "Small", "Large"],
         },
         icon: { type: ControlType.String, title: "Icon" },
         disabled: { type: ControlType.Boolean, title: "Disabled" },
@@ -51,7 +67,8 @@ export class Button extends React.Component<Props> {
         shape: {
             type: ControlType.Enum,
             title: "Shape",
-            options: ["circle-outline", "circle", "round"],
+            options: ["default", "circle", "round"],
+            optionTitles: ["Default", "Circle", "Round"],
         },
         backgroundColor: { type: ControlType.Color, title: "Background Color" },
     }
@@ -61,6 +78,7 @@ export class Button extends React.Component<Props> {
             text,
             type,
             icon,
+            size,
             disabled,
             ghost,
             shape,
@@ -73,6 +91,7 @@ export class Button extends React.Component<Props> {
             text,
             type,
             icon,
+            size,
             disabled,
             ghost,
             shape,
@@ -82,7 +101,7 @@ export class Button extends React.Component<Props> {
         }
 
         return (
-            <Frame {...rest} {...centerInContainer(this.props)}>
+            <Frame {...rest}  {...centerInContainer(this.props)}>
                 <AntButton
                     style={{
                         height: `100%`,

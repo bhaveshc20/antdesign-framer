@@ -19,7 +19,6 @@ function onSearch(val) {
     console.log("search:", val)
 }
 
-
 interface Props extends FrameProps {
     allowClear: boolean
     autoClearSearchValue: boolean
@@ -33,7 +32,7 @@ interface Props extends FrameProps {
     labelInValue: boolean
     maxTagCount: number
     maxTagPlaceholder?: React.ReactNode
-    mode: 'default' | 'multiple' | 'tags'
+    mode: "default" | "multiple" | "tags"
     notFoundContent: string
     placeholder: string | React.ReactNode
     showArrow: boolean
@@ -53,8 +52,8 @@ export class Select extends React.Component<Props> {
         dropdownMatchSelectWidth: true,
         filterOption: true,
         labelInValue: false,
-        mode: 'default',
-        notFoundContent: 'Not Found',
+        mode: "default",
+        notFoundContent: "Not Found",
         showArrow: true,
         showSearch: false,
         loading: false,
@@ -66,29 +65,40 @@ export class Select extends React.Component<Props> {
             propertyControl: {
                 type: ControlType.String,
             },
-            defaultValue: ['Paris', 'New York'],
-            title: 'Value',
+            defaultValue: ["Paris", "New York"],
+            title: "Value",
         },
         allowClear: { type: ControlType.Boolean, title: "Allow Clear" },
-        autoClearSearchValue: { type: ControlType.Boolean, title: "Auto clear search value" },
-        defaultActiveFirstOption: { type: ControlType.Boolean, title: "Default active first option" },
+        autoClearSearchValue: {
+            type: ControlType.Boolean,
+            title: "Auto clear search value",
+        },
+        defaultActiveFirstOption: {
+            type: ControlType.Boolean,
+            title: "Default active first option",
+        },
         defaultValue: { type: ControlType.String, title: "Default value" },
         disabled: { type: ControlType.Boolean, title: "Disabled" },
-        dropdownMatchSelectWidth: { type: ControlType.Boolean, title: "Dropdown match select width" },
+        dropdownMatchSelectWidth: {
+            type: ControlType.Boolean,
+            title: "Dropdown match select width",
+        },
         filterOption: { type: ControlType.Boolean, title: "Filter option" },
-        firstActiveValue: { type: ControlType.String, title: "First active value" },
+        firstActiveValue: {
+            type: ControlType.String,
+            title: "First active value",
+        },
         labelInValue: { type: ControlType.Boolean, title: "Label in value" },
         maxTagCount: { type: ControlType.Number, title: "Max tag count" },
         mode: {
             type: ControlType.Enum,
             title: "Mode",
-            options: [
-                "default",
-                "multiple",
-                "tags"
-            ],
+            options: ["default", "multiple", "tags"],
         },
-        notFoundContent: { type: ControlType.String, title: "Not found content" },
+        notFoundContent: {
+            type: ControlType.String,
+            title: "Not found content",
+        },
         placeholder: { type: ControlType.String, title: "Placeholder" },
         showArrow: { type: ControlType.Boolean, title: "Show arrow" },
         showSearch: { type: ControlType.Boolean, title: "Show search" },
@@ -122,7 +132,7 @@ export class Select extends React.Component<Props> {
 
         return (
             <AntSelect
-                style={{ width: "268px" }}
+                style={{ width: this.props.width }}
                 onChange={onChange}
                 onFocus={onFocus}
                 onBlur={onBlur}
@@ -147,12 +157,9 @@ export class Select extends React.Component<Props> {
                 defaultOpen={defaultOpen}
                 loading={loading}
             >
-                {value.map((val) => {
+                {value.map(val => {
                     return (
-                        <AntSelect.Option
-                            key={val}
-                            value={val}
-                        >
+                        <AntSelect.Option key={val} value={val}>
                             {val}
                         </AntSelect.Option>
                     )
@@ -161,4 +168,3 @@ export class Select extends React.Component<Props> {
         )
     }
 }
-
